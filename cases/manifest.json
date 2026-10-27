@@ -1,0 +1,59 @@
+{
+  "upstream": {
+    "repo": "babyblueviper1/preaction-governance-conformance",
+    "commit": "c63208dca83c2b6e5020449e55ea6f7336717c5e",
+    "path": "examples/ag2-beta",
+    "license": "MIT",
+    "retrieved": "2026-10-27"
+  },
+  "cases": [
+    {
+      "file": "cases/contract/matches.json",
+      "kind": "contract",
+      "upstream_file": "external_attestation_matches_intent_ref.json",
+      "sha256": "9e9c556d879e8910ad54f8fafe044af55ac1491eb949be2dcc158057b7f192a0",
+      "expect_binary": "released/attestation_bound_and_verified",
+      "expect_quaternary": "released/attestation_bound_and_verified"
+    },
+    {
+      "file": "cases/contract/mismatch.json",
+      "kind": "contract",
+      "upstream_file": "external_attestation_intent_ref_mismatch.json",
+      "sha256": "83a0ddc46436629ed957cf5386253c301dbbe9b17e4419cdcae4c47c35fa36e3",
+      "expect_binary": "blocked/attestation_intent_ref_mismatch",
+      "expect_quaternary": "blocked/attestation_intent_ref_mismatch"
+    },
+    {
+      "file": "cases/contract/missing.json",
+      "kind": "contract",
+      "upstream_file": "external_attestation_missing_where_required.json",
+      "sha256": "be2563755ff2038ed54d3e345eeaaebb3018f3210f7d696b8eccc314ee8b9588",
+      "expect_binary": "blocked/required_attestation_missing",
+      "expect_quaternary": "blocked/required_attestation_missing"
+    },
+    {
+      "file": "cases/gap/policy_absent.json",
+      "kind": "gap",
+      "derived_from": "cases/contract/missing.json",
+      "sha256": "f1404480a9811a1014d930602ff94d9051672be3774996db7b4994a46435e7c9",
+      "expect_binary": "released/no_attestation_required",
+      "expect_quaternary": "unknown/policy_undetermined"
+    },
+    {
+      "file": "cases/gap/pubkey_unresolvable.json",
+      "kind": "gap",
+      "derived_from": "cases/contract/matches.json",
+      "sha256": "d8b431fd2207cd2684d0548358e9784c5d9a23fbd82daad821795f447604a756",
+      "expect_binary": "blocked/attestation_signature_invalid",
+      "expect_quaternary": "unknown/attestation_key_unresolvable"
+    },
+    {
+      "file": "cases/gap/field_not_hex.json",
+      "kind": "gap",
+      "derived_from": "cases/contract/matches.json",
+      "sha256": "485ff026d827bd7220a465e462269675665fbb41b783a164a834ccc0d5f87d40",
+      "expect_binary": "CRASH/ValueError",
+      "expect_quaternary": "unknown/attestation_unparseable"
+    }
+  ]
+}

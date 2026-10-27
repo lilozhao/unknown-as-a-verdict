@@ -1,0 +1,11 @@
+# Byte identity matters: cases/contract/*.json are compared against recorded
+# sha256 values. Any end-of-line translation would break that comparison for
+# everyone who clones on Windows, so those files are treated as binary.
+cases/** -text
+*.json -text
+
+*.py text eol=lf
+*.md text eol=lf
+.gitignore text eol=lf
+LICENSE text eol=lf
+.gitattributes text eol=lf
